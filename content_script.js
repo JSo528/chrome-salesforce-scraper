@@ -1,10 +1,10 @@
 full_address = $('#acc17_ileinner').html().toString().split('<br>');
 for(i=0;i<full_address.length;i++) {
 	temp = full_address[i].match(/[ \w]+, [A-Z]{2}/)
-	// console.log(temp != null)
 	if (temp != null) {
 		store_city = temp[0].split(',')[0];
 		store_state = temp[0].split(',')[1];
+		store_zipcode = full_address[i].match(/\d{5}/)[0];
 	}
 }
 
@@ -15,14 +15,17 @@ if (pickup_instructions.split(' ').length < 6) {
 
 menu_links = ""
 $($('.list')[3]).find('tr').each(function() {
-	console.log('1')
 	if ($(this).find('td:eq(1) a').text().toLowerCase().match('menu') != null) {
 		menu_links = menu_links + document.location.host + $(this).find('td:eq(1) a').attr('href') + "  "
 	}
 })
 
+if ($('#00NE0000002B12H_ileinner').text() == "Check") {
+	deposit_type = 1;
+} else {
+	deposit_type = 0;
+}
 hours_comments = "Normal Hours: " + $('#00NE0000001CgrH_ileinner').text() + "\n" + "Busy Hours: " + $('#00NE0000001EHr9_ileinner').text()
-console.log('2')
 var leadInfo = {
 	"store_name": $('#acc2_ileinner').text().replace("[View Hierarchy]", "").trim(),
 	"store_phone_number": $('#acc10_ileinner').text(),
@@ -36,6 +39,7 @@ var leadInfo = {
 	"store_address": full_address[0],
 	"store_city": store_city,
 	"store_state": store_state,
+	"store_zipcode": store_zipcode,
 	"merchant_email": $($('.gmailLink a')[0]).text().replace('[Gmail', '').trim(),
 	"merchant_first_name": $($('.contactBlock .dataCell')[0]).text().split(' ')[0],
 	"merchant_last_name": $($('.contactBlock .dataCell')[0]).text().split(' ')[1],
@@ -44,7 +48,9 @@ var leadInfo = {
 	"commission_rate": $('#00NE0000001EHoZ_ileinner').text().replace('%', ''),
 	"menu_links": menu_links,
 	"hours_comments": hours_comments,
-	"salesforce_link": document.location.href
+	"salesforce_link": document.location.href,
+	"number_of_yelp_reviews": $('#00NE0000001ChhN_ileinner').text(),
+	"deposit_type": deposit_type
 }
 
 chrome.extension.connect().postMessage(leadInfo)
