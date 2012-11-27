@@ -1,6 +1,6 @@
 {
   "name": "Salesforce Scraper",
-  "version": "1.0",
+  "version": "1.0.3",
   "description": "Scrapes salesforce using jQuery, sending information to the OA sales portal",
   "update_url": "https://s3.amazonaws.com/orderahead-production/chrome_extensions/chrome-salesforce-scraper-updates.xml",
   "permissions": ["tabs", "http://*/", "https://*/"],
@@ -13,7 +13,7 @@
     "default_icon": "logo.png"
   },
   "content_scripts": [ {
-    "js": [ "jquery.min.js", "content.js" ],
+    "js": [ "jquery.min.js"],
     "matches": [ "http://*/*", "https://*/*"]
   }]
 }

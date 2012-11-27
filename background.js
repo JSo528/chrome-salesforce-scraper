@@ -4,13 +4,12 @@ chrome.extension.onConnect.addListener(function(port) {
   // This will get called by the content script we execute in
   // the tab as a result of the user pressing the browser action.
   port.onMessage.addListener(function(info) {
-		chrome.tabs.query({url: "http://sales.orderaheadapp.com/leads/*/edit"}, function (tab){
+		chrome.tabs.query({url: "http://macq.orderaheadapp.com/leads/*/edit"}, function (tab){
 			if (tab.length > 0) {
 				chrome.tabs.update(tab[0].id, {active: true}, function(tab){
 				  tabId = tab.id
 				  chrome.tabs.executeScript(tabId, 
 				  	{code:
-				  		"$('#storeName').val(" + JSON.stringify(info.store_name) + ");" +
 				  		"$('#storePhoneNumber').val(" + JSON.stringify(info.store_phone_number) + ");" +
 				  		"$('#storeWebsiteUrl').val(" + JSON.stringify(info.store_website) + ");" +
 				  		"$('#storeRoutingNumber').val(" + JSON.stringify(info.routing_number) + ");" +
@@ -22,16 +21,16 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#storeAddress').val(" + JSON.stringify(info.store_address) + ");" +
 				  		"$('#storeCity').val(" + JSON.stringify(info.store_city) + ");" +
 				  		"$('#storeState').val(" + JSON.stringify(info.store_state) + ");" +
-				  		"$('#merchantEmail').val(" + JSON.stringify(info.merchant_email) + ");" +
-				  		"$('#merchantFirstName').val(" + JSON.stringify(info.merchant_first_name) + ");" +
-				  		"$('#merchantLastName').val(" + JSON.stringify(info.merchant_last_name) + ");" +
 				  		"$('#merchantPhoneNumber').val(" + JSON.stringify(info.merchant_phone_number) + ");" +
-				  		"$('#menuComments').val(" + JSON.stringify(info.menu_comments) + ");"
+				  		"$('#menuComments').val(" + JSON.stringify(info.menu_comments) + ");" +
+				  		"$('#menuSourceUrls').val(" + JSON.stringify(info.menu_links) + ");" +
+				  		"$('#storeHoursText').val(" + JSON.stringify(info.hours_comments) + ");" +
+				  		"$('#salesforceLink').val(" + JSON.stringify(info.salesforce_link) + ");"
 				  	})
 				})
 			} else {
 		  	chrome.tabs.create({
-			    'url':'http://sales.orderaheadapp.com/leads/new',
+			    'url':'http://macq.orderaheadapp.com/leads/new',
 			    'selected':true
 				}, function(tab) {
 				  tabId = tab.id
@@ -53,7 +52,11 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#merchantFirstName').val(" + JSON.stringify(info.merchant_first_name) + ");" +
 				  		"$('#merchantLastName').val(" + JSON.stringify(info.merchant_last_name) + ");" +
 				  		"$('#merchantPhoneNumber').val(" + JSON.stringify(info.merchant_phone_number) + ");" +
-				  		"$('#menuComments').val(" + JSON.stringify(info.menu_comments) + ");"
+				  		"$('#menuComments').val(" + JSON.stringify(info.menu_comments) + ");" +
+				  		"$('#commission').val(" + JSON.stringify(info.commission_rate) + ");" +
+				  		"$('#menuSourceUrls').val(" + JSON.stringify(info.menu_links) + ");" +
+				  		"$('#storeHoursText').val(" + JSON.stringify(info.hours_comments) + ");" +
+				  		"$('#salesforceLink').val(" + JSON.stringify(info.salesforce_link) + ");"
 				  	});
 				})
 			}
