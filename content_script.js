@@ -1,4 +1,5 @@
 full_address = $('#acc17_ileinner').html().toString().split('<br>');
+
 for(i=0;i<full_address.length;i++) {
 	temp = full_address[i].match(/[ \w]+, [A-Z]{2}/)
 	if (temp != null) {
