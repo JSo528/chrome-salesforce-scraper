@@ -25,6 +25,8 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#storeHoursText').val(" + JSON.stringify(info.hours_comments) + ");" +
 				  		"$('#salesforceLink').val(" + JSON.stringify(info.salesforce_link) + ");" + 
 				  		"$('#numberOfYelpReviews').val(" + JSON.stringify(info.number_of_yelp_reviews) + ");" +
+				  		"$('#yelpUrl').val(" + JSON.stringify(info.yelp_url) + ");" +
+				  		"$('#yelpRating').val(" + JSON.stringify(info.yelp_rating) + ");" +
 				  		"$('#depositTypeCheckBox').val(" + JSON.stringify(info.deposit_type) + ");"
 
 		chrome.tabs.query({url: HOSTNAME + "/leads/*/edit"}, function (tab){

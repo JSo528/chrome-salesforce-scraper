@@ -51,6 +51,8 @@ var leadInfo = {
 	"hours_comments": hours_comments,
 	"salesforce_link": document.location.href,
 	"number_of_yelp_reviews": $('#00NE0000001ChhN_ileinner').text(),
+	"yelp_url": $('#00NE0000001ChOQ_ileinner a').attr('href'),
+	"yelp_rating": $('#00NE0000003sjJq_ileinner').text(),
 	"deposit_type": deposit_type
 }
 
