@@ -1,4 +1,4 @@
-// var HOSTNAME = "http://macq.orderahead.dev";
+// var HOSTNAME = "http://mg.orderahead.dev";
 var HOSTNAME = "http://mg.orderaheadapp.com";
 
 chrome.extension.onConnect.addListener(function(port) {
@@ -8,7 +8,7 @@ chrome.extension.onConnect.addListener(function(port) {
   // the tab as a result of the user pressing the browser action.
   port.onMessage.addListener(function(info) {
   	var shared_code = "$('#storePhoneNumber').val(" + JSON.stringify(info.store_phone_number) + ");" +
-				  		"$('#storeWebsiteUrl').val(" + JSON.stringify(info.store_website) + ");" +
+				  		"$('#websiteUrl').val(" + JSON.stringify(info.store_website) + ");" +
 				  		"$('#storeRoutingNumber').val(" + JSON.stringify(info.routing_number) + ");" +
 				  		"$('#storeBankAccountNumber').val(" + JSON.stringify(info.bank_account_number) + ");" +
 				  		"$('#storeFaxNumber').val(" + JSON.stringify(info.store_fax_number) + ");" +
@@ -27,7 +27,19 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#numberOfYelpReviews').val(" + JSON.stringify(info.number_of_yelp_reviews) + ");" +
 				  		"$('#yelpUrl').val(" + JSON.stringify(info.yelp_url) + ");" +
 				  		"$('#yelpRating').val(" + JSON.stringify(info.yelp_rating) + ");" +
-				  		"$('#depositTypeCheckBox').val(" + JSON.stringify(info.deposit_type) + ");"
+				  		"$('#depositTypeCheckBox').val(" + JSON.stringify(info.deposit_type) + ");" +
+				  		"$('#facebookUrl').val(" + JSON.stringify(info.facebook_url) + ");" +
+				  		"$('#testOrderNotes').val(" + JSON.stringify(info.test_order_notes) + ");" +
+				  		"$('#webmasterName').val(" + JSON.stringify(info.webmaster_name) + ");" +
+				  		"$('#webmasterEmail').val(" + JSON.stringify(info.webmaster_email) + ");" +
+				  		"$('#webmasterPhone').val(" + JSON.stringify(info.webmaster_phone) + ");" +
+				  		"$('#webmasterUrl').val(" + JSON.stringify(info.webmaster_url) + ");" +
+				  		"$('#webmasterUsername').val(" + JSON.stringify(info.webmaster_username) + ");" +
+				  		"$('#webmasterPassword').val(" + JSON.stringify(info.webmaster_password) + ");" +
+				  		"$('#wantsMicrosite').val(" + JSON.stringify(info.wants_microsite) + ");" +
+				  		"$('#receiveOrderType').val(" + JSON.stringify(info.receive_orders_via) + ");" +
+				  		"$('#twitterHandle').val(" + JSON.stringify(info.twitter_handle) + ");"
+
 
 		chrome.tabs.query({url: HOSTNAME + "/leads/*/edit"}, function (tab){
 			if (tab.length > 0) {

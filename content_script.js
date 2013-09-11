@@ -4,7 +4,7 @@ for(i=0;i<full_address.length;i++) {
 	temp = full_address[i].match(/[ \w]+, [A-Z]{2}/)
 	if (temp != null) {
 		store_city = temp[0].split(',')[0];
-		store_state = temp[0].split(',')[1];
+		store_state = temp[0].split(',')[1].replace(/ /g, '');
 		store_zipcode = full_address[i].match(/\d{5}/)[0];
 	}
 }
@@ -27,6 +27,16 @@ if ($('#00NE0000002B12H_ileinner').text() == "Check") {
 	deposit_type = 0;
 }
 hours_comments = "Normal Hours: " + $('#00NE0000001CgrH_ileinner').text() + "\n" + "Busy Hours: " + $('#00NE0000001EHr9_ileinner').text()
+
+if ($('#00NE0000004SkSp_ileinner').text() == "Yes") {
+	wants_microsite = 1;
+} else {
+	wants_microsite = 0;
+}
+
+twitter_array = $('#00NE0000004S4gb_ileinner').text().split('/')
+twitter_handle = twitter_array[twitter_array.length - 1]
+
 var leadInfo = {
 	"store_name": $('#acc2_ileinner').text().replace("[View Hierarchy]", "").trim(),
 	"store_phone_number": $('#acc10_ileinner').text(),
@@ -53,7 +63,18 @@ var leadInfo = {
 	"number_of_yelp_reviews": $('#00NE0000001ChhN_ileinner').text(),
 	"yelp_url": $('#00NE0000001ChOQ_ileinner a').attr('href'),
 	"yelp_rating": $('#00NE0000003sjJq_ileinner').text(),
-	"deposit_type": deposit_type
+	"deposit_type": deposit_type,
+	"facebook_url": $('#00NE0000004S4ib_ileinner a').attr('href'),
+	"test_order_notes": $('#00NE0000004TRTW_ileinner').text(),
+	"webmaster_name": $('#00NE0000003sAl5_ileinner').text(),
+	"webmaster_email": $('#00NE0000003sAlA_ileinner').text().replace('[Gmail]', '').trim(),
+	"webmaster_phone": $('#00NE0000003sAlF_ileinner').text(),
+	"webmaster_url": $('#00NE0000003sAlK_ileinner').text(),
+	"webmaster_username": $('#00NE0000003sAlo_ileinner').text(),
+	"webmaster_password": $('#00NE0000003sAlt_ileinner').text(),
+	"wants_microsite": wants_microsite,
+	"receive_orders_via": $('#00NE0000004U55T_ileinner').text(),
+	"twitter_handle": twitter_handle
 }
 
 chrome.extension.connect().postMessage(leadInfo)
