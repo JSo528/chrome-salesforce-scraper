@@ -1,5 +1,5 @@
-// var HOSTNAME = "http://mg.orderahead.dev";
-var HOSTNAME = "http://mg.orderaheadapp.com";
+var HOSTNAME = "http://mg.orderahead.dev";
+// var HOSTNAME = "http://mg.orderaheadapp.com";
 
 chrome.extension.onConnect.addListener(function(port) {
   var tab = port.sender.tab;
@@ -38,7 +38,9 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#webmasterPassword').val(" + JSON.stringify(info.webmaster_password) + ");" +
 				  		"$('#wantsMicrosite').val(" + JSON.stringify(info.wants_microsite) + ");" +
 				  		"$('#receiveOrderType').val(" + JSON.stringify(info.receive_orders_via) + ");" +
-				  		"$('#twitterHandle').val(" + JSON.stringify(info.twitter_handle) + ");"
+				  		"$('#twitterHandle').val(" + JSON.stringify(info.twitter_handle) + ");" +
+				  		"$('#feedbackEmail').val(" + JSON.stringify(info.feedback_email) + ");" +
+				  		"$('#bio').val(" + JSON.stringify(info.bio) + ");"
 
 
 		chrome.tabs.query({url: HOSTNAME + "/leads/*/edit"}, function (tab){

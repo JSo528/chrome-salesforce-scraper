@@ -37,6 +37,8 @@ if ($('#00NE0000004SkSp_ileinner').text() == "Yes") {
 twitter_array = $('#00NE0000004S4gb_ileinner').text().split('/')
 twitter_handle = twitter_array[twitter_array.length - 1]
 
+feedback_email = $('#00NE0000004uNxW_ileinner').text().replace('[Gmail]', '').trim()
+
 var leadInfo = {
 	"store_name": $('#acc2_ileinner').text().replace("[View Hierarchy]", "").trim(),
 	"store_phone_number": $('#acc10_ileinner').text(),
@@ -74,7 +76,9 @@ var leadInfo = {
 	"webmaster_password": $('#00NE0000003sAlt_ileinner').text(),
 	"wants_microsite": wants_microsite,
 	"receive_orders_via": $('#00NE0000004U55T_ileinner').text(),
-	"twitter_handle": twitter_handle
+	"twitter_handle": twitter_handle,
+	"feedback_email": feedback_email,
+	"bio": $('#00NE0000004uNwX_ileinner').text()
 }
 
 chrome.extension.connect().postMessage(leadInfo)
