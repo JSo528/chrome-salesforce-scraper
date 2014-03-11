@@ -1,5 +1,6 @@
-var HOSTNAME = "http://mg.orderahead.dev";
-// var HOSTNAME = "http://mg.orderaheadapp.com";
+// var HOSTNAME = "http://mg.orderahead.dev";
+var HOSTNAME = "http://mg.orderaheadapp.com";
+// var HOSTNAME = "http://mg.hipchemistlabs.com";
 
 chrome.extension.onConnect.addListener(function(port) {
   var tab = port.sender.tab;
