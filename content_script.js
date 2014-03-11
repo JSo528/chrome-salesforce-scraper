@@ -1,4 +1,24 @@
-full_address = $('#acc17_ileinner').html().toString().split('<br>');
+console.log('start')
+owner_name = $('#lea2_ileinner').text()
+store_name = $('#lea3_ileinner').text().trim()
+store_url = $('#lea12_ileinner').text()
+store_phone = $('#lea8_ileinner').text()
+owner_phone = $('#00NE000000299X2_ileinner').text()
+owner_email = $('#lea11_ileinner').text()
+
+store_city = $('#00NE0000002BkhR_ileinner').text()
+yelp_url = $('#00NE0000001ChhD_ileinner').text()
+number_of_yelp_reviews = $('#00NE0000001ChhI_ileinner').text()
+yelp_rating = $('#00NE0000003sjGS_ileinner').text()
+does_delivery = $('#00NE0000003sjGN_ileinner').text()
+
+if (does_delivery == "Yes") {
+	does_delivery == "true"
+} else {
+	does_delivery == "false"
+}
+
+full_address = $('#lea16_ileinner').html().toString().split('<br>');
 
 for(i=0;i<full_address.length;i++) {
 	temp = full_address[i].match(/[ \w]+, [A-Z]{2}/)
@@ -9,76 +29,23 @@ for(i=0;i<full_address.length;i++) {
 	}
 }
 
-pickup_instructions = $('#00NE0000001EHrE_ileinner').text()
-if (pickup_instructions.split(' ').length < 6) {
-	pickup_instructions = "Please go to the " + pickup_instructions + " and ask for your OrderAhead order by name."
-}
-
-menu_links = ""
-$($('.list')[3]).find('tr').each(function() {
-	if ($(this).find('td:eq(1) a').text().toLowerCase().match('menu') != null) {
-		menu_links = menu_links + document.location.host + $(this).find('td:eq(1) a').attr('href') + "  "
-	}
-})
-
-if ($('#00NE0000002B12H_ileinner').text() == "Check") {
-	deposit_type = 1;
-} else {
-	deposit_type = 0;
-}
-hours_comments = "Normal Hours: " + $('#00NE0000001CgrH_ileinner').text() + "\n" + "Busy Hours: " + $('#00NE0000001EHr9_ileinner').text()
-
-if ($('#00NE0000004SkSp_ileinner').text() == "Yes") {
-	wants_microsite = 1;
-} else {
-	wants_microsite = 0;
-}
-
-twitter_array = $('#00NE0000004S4gb_ileinner').text().split('/')
-twitter_handle = twitter_array[twitter_array.length - 1]
-
-feedback_email = $('#00NE0000004uNxW_ileinner').text().replace('[Gmail]', '').trim()
-
 var leadInfo = {
-	"store_name": $('#acc2_ileinner').text().replace("[View Hierarchy]", "").trim(),
-	"store_phone_number": $('#acc10_ileinner').text(),
-	"store_website": $('#acc12_ileinner').text(),
-	"routing_number": $('#00NE0000001CfnZ_ileinner').text(),
-	"bank_account_number": $('#00NE0000001Cfm4_ileinner').text(),
-	"store_fax_number": $('#00NE0000001EHoA_ileinner').text(),
-	"default_prep_time": $('#00NE0000001Cg9f_ileinner').text().match(/\d+/),
-	"busy_prep_time": $('#00NE0000001Cgwh_ileinner').text().match(/\d+/),
-	"pickup_instructions": pickup_instructions,
+	"store_name": store_name,
+	"store_phone_number": store_phone,
+	"store_website": stoer_url,
 	"store_address": full_address[0],
 	"store_city": store_city,
 	"store_state": store_state,
 	"store_zipcode": store_zipcode,
-	"merchant_email": $($('.gmailLink a')[0]).text().replace('[Gmail', '').trim(),
-	"merchant_first_name": $($('.contactBlock .dataCell')[0]).text().split(' ')[0],
-	"merchant_last_name": $($('.contactBlock .dataCell')[0]).text().split(' ')[1],
-	"merchant_phone_number": $($('.PhoneNumberElement')[1]).text(),
-	"menu_comments": $('#00NE0000001EHyp_ileinner').text(),
-	"commission_rate": $('#00NE0000001EHoZ_ileinner').text().replace('%', ''),
-	"menu_links": menu_links,
-	"hours_comments": hours_comments,
+	"merchant_email": owner_email,
+	"merchant_first_name": owner_name.text().split(' ')[0],
+	"merchant_last_name": owner_name.split(' ')[1],
+	"merchant_phone_number": owner_phone,
 	"salesforce_link": document.location.href,
-	"number_of_yelp_reviews": $('#00NE0000001ChhN_ileinner').text(),
-	"yelp_url": $('#00NE0000001ChOQ_ileinner a').attr('href'),
-	"yelp_rating": $('#00NE0000003sjJq_ileinner').text(),
-	"deposit_type": deposit_type,
-	"facebook_url": $('#00NE0000004S4ib_ileinner a').attr('href'),
-	"test_order_notes": $('#00NE0000004TRTW_ileinner').text(),
-	"webmaster_name": $('#00NE0000003sAl5_ileinner').text(),
-	"webmaster_email": $('#00NE0000003sAlA_ileinner').text().replace('[Gmail]', '').trim(),
-	"webmaster_phone": $('#00NE0000003sAlF_ileinner').text(),
-	"webmaster_url": $('#00NE0000003sAlK_ileinner').text(),
-	"webmaster_username": $('#00NE0000003sAlo_ileinner').text(),
-	"webmaster_password": $('#00NE0000003sAlt_ileinner').text(),
-	"wants_microsite": wants_microsite,
-	"receive_orders_via": $('#00NE0000004U55T_ileinner').text(),
-	"twitter_handle": twitter_handle,
-	"feedback_email": feedback_email,
-	"bio": $('#00NE0000004uNwX_ileinner').text()
+	"number_of_yelp_reviews": number_of_yelp_reviews,
+	"yelp_url": yelp_url,
+	"yelp_rating": yelp_rating
+	"does_delivery": does_delivery
 }
 
 chrome.extension.connect().postMessage(leadInfo)
