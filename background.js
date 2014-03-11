@@ -18,7 +18,9 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#salesforceLink').val(" + JSON.stringify(info.salesforce_link) + ");" +
 				  		"$('#numberOfYelpReviews').val(" + JSON.stringify(info.number_of_yelp_reviews) + ");" +
 				  		"$('#yelpUrl').val(" + JSON.stringify(info.yelp_url) + ");" +
-				  		"$('#yelpRating').val(" + JSON.stringify(info.yelp_rating) + ");"
+				  		"$('#yelpRating').val(" + JSON.stringify(info.yelp_rating) + ");" +
+				  		"$('#doesDelivery').val(" + JSON.stringify(info.does_delivery) + ");"
+
 		chrome.tabs.query({url: HOSTNAME + "/leads/*/edit"}, function (tab){
 			if (tab.length > 0) {
 				chrome.tabs.update(tab[0].id, {active: true}, function(tab){
@@ -39,7 +41,7 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#storeName').val(" + JSON.stringify(info.store_name) + ");" +
 				  		"$('#merchantEmail').val(" + JSON.stringify(info.merchant_email) + ");" +
 				  		"$('#merchantFirstName').val(" + JSON.stringify(info.merchant_first_name) + ");" +
-				  		"$('#merchantLastName').val(" + JSON.stringify(info.merchant_last_name) + ");"
+				  		"$('#merchantLastName').val(" + JSON.stringify(info.merchant_last_name) + ");" +
 				  		shared_code
 				  	});
 				})
