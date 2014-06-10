@@ -1,3 +1,5 @@
+console.log("START HERE")
+
 owner_first_name = $('#00NE0000004xDKp_ileinner').text()
 owner_last_name = $('#00NE0000004xLb0_ileinner').text()
 store_name = $('#opp4_ileinner').text()
@@ -25,8 +27,8 @@ has_wifi = $('#00NE0000004xLYQ_ileinner').text()
 has_waiter_service = $('#00NE0000004xLYa_ileinner').text()
 restaurant_category = $('#00NE0000004xLWF_ileinner').text()
 price_range = $('#00NE0000004xCa3_ileinner').text()
-setup_fee = $('#00NE0000004wRNr_ileinner').text()
-subscription_fee = $('#00NE0000004wRNw_ileinner').text()
+setup_fee = parseInt($('#00NE0000004wRNr_ileinner').text().match(/\d+/))
+subscription_fee = parseInt($('#00NE0000004wRNw_ileinner').text().match(/\d+/))
 commission_percentage = $('#00NE0000004xLeE_ileinner').text()
 motivation_for_signing_up = $('#00NE0000004xLe4_ileinner').text()
 menu_notes = $('#00NE0000004xLg5_ileinner').text()
@@ -46,8 +48,37 @@ test_order_notes = $('#00NE0000004xLdu_ileinner').text()
 merchant_bio = $('#00NE0000004xLdV_ileinner').text()
 twitter_handle = $('#00NE0000004xLdL_ileinner').text()
 facebook_url = $('#00NE0000004xLdG_ileinner').text()
+opportunity_id = document.location.href.split('/').pop()
 
+if ($('#00NE0000004xLe9_ileinner').text() == "Monthly Fee") {
+	if (subscription_fee >= 400) {
+		plan = 6
+	} else if (subscription_fee >= 200) {
+		plan = 5
+	} else {
+		plan = 4
+	}
+} else {
+	plan = 3
+}
 
+switch (receive_orders_via) {
+	case "Fax":
+		receive_int = 0;
+		console.log('fax')
+		break;
+	case "Ipad":
+		receive_int = 1;
+		console.log('ipad')
+		break;
+	case "Email":
+		receive_int = 3;
+		console.log('email')
+		break;
+	default:
+		receive_int = 0;
+		break;
+}
 
 var leadInfo = {
 	"store_name": store_name,
@@ -60,7 +91,6 @@ var leadInfo = {
 	"merchant_first_name": owner_first_name,
 	"merchant_last_name": owner_last_name,
 	"merchant_phone_number": owner_phone,
-	"salesforce_link": document.location.href,
 	"number_of_yelp_reviews": number_of_yelp_reviews,
 	"yelp_url": yelp_url,
 	"yelp_rating": yelp_rating,
@@ -71,7 +101,30 @@ var leadInfo = {
 	"parking": parking,
 	"has_waiter_service": has_waiter_service,
 	"restaurant_category": restaurant_category,
-	"price_range": price_range
+	"price_range": price_range,
+	"setup_fee": setup_fee,
+	"subscription_fee": subscription_fee,
+	"commission_percentage": commission_percentage,
+	"motivation_for_signing_up": motivation_for_signing_up,
+	"menu_notes": menu_notes,
+	"online_ordering_notes": online_ordering_notes,
+	"order_size_limit": order_size_limit,
+	"busy_prep_time": busy_prep_time,
+	"default_prep_time": default_prep_time,
+	"deposit_type": deposit_type,
+	"feedback_email": feedback_email,
+	"receive_int": receive_int,
+	"webmaster_name": webmaster_name,
+	"webmaster_phone": webmaster_phone,
+	"webmaster_email": webmaster_email,
+	"pickup_instructions": pickup_instructions,
+	"decision_maker_notes": decision_maker_notes,
+	"test_order_notes": test_order_notes,
+	"bio": merchant_bio,
+	"twitter_handle": twitter_handle,
+	"facebook_url": facebook_url,
+	"opportunity_id": opportunity_id,
+	"plan" : plan
 }
 
 chrome.extension.connect().postMessage(leadInfo)

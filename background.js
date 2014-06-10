@@ -25,7 +25,8 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#hasWaiterService').val(" + JSON.stringify(info.has_waiter_service) + ");" +
 				  		"$('#restaurantCategory').val(" + JSON.stringify(info.restaurant_category) + ");" +
 				  		"$('#priceRange').val(" + JSON.stringify(info.price_range) + ");" +
-				  		"$('#doesDelivery').val(" + JSON.stringify(info.does_delivery) + ");"
+				  		"$('#doesDelivery').val(" + JSON.stringify(info.does_delivery) + ");" +
+				  		"$('#salesforceOpportunityId').val(" + JSON.stringify(info.opportunity_id) + ");"
 
 		chrome.tabs.query({url: HOSTNAME + "/leads/*/edit"}, function (tab){
 			if (tab.length > 0) {
@@ -33,7 +34,12 @@ chrome.extension.onConnect.addListener(function(port) {
 				  tabId = tab.id
 				  chrome.tabs.executeScript(tabId,
 				  	{
-				  		code: shared_code
+				  		code:
+				  			"$('#facebookUrl').val(" + JSON.stringify(info.facebook_url) + ");" +
+				  			"$('#bio').val(" + JSON.stringify(info.bio) + ");" +
+				  			"$('#twitterHandle').val(" + JSON.stringify(info.twitter_handle) + ");" +
+								"$('#receiveOrderType').val(" + JSON.stringify(info.receive_int) + ");" +
+				  			shared_code
 				  	});
 				})
 			} else {
@@ -48,6 +54,9 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#merchantEmail').val(" + JSON.stringify(info.merchant_email) + ");" +
 				  		"$('#merchantFirstName').val(" + JSON.stringify(info.merchant_first_name) + ");" +
 				  		"$('#merchantLastName').val(" + JSON.stringify(info.merchant_last_name) + ");" +
+				  		"$('#package').val(" + JSON.stringify(info.plan) + ");" +
+				  		"$('#setupFee').val(" + JSON.stringify(info.setup_fee) + ");" +
+				  		"$('#subscriptionFee').val(" + JSON.stringify(info.subscription_fee) + ");" +
 				  		shared_code
 				  	});
 				})
