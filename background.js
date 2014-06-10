@@ -1,6 +1,6 @@
 // var HOSTNAME = "http://mg.orderahead.dev";
-var HOSTNAME = "http://mg.orderaheadapp.com";
 // var HOSTNAME = "http://mg.hipchemistlabs.com";
+var HOSTNAME = "http://mg.orderaheadapp.com";
 
 chrome.extension.onConnect.addListener(function(port) {
   var tab = port.sender.tab;
@@ -13,12 +13,18 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#storeAddress').val(" + JSON.stringify(info.store_address) + ");" +
 				  		"$('#storeCity').val(" + JSON.stringify(info.store_city) + ");" +
 				  		"$('#storeState').val(" + JSON.stringify(info.store_state) + ");" +
-				  		"$('#storeZipCode').val(" + JSON.stringify(info.store_zipcode) + ");" +
 				  		"$('#merchantPhoneNumber').val(" + JSON.stringify(info.merchant_phone_number) + ");" +
 				  		"$('#salesforceLink').val(" + JSON.stringify(info.salesforce_link) + ");" +
 				  		"$('#numberOfYelpReviews').val(" + JSON.stringify(info.number_of_yelp_reviews) + ");" +
 				  		"$('#yelpUrl').val(" + JSON.stringify(info.yelp_url) + ");" +
 				  		"$('#yelpRating').val(" + JSON.stringify(info.yelp_rating) + ");" +
+				  		"$('#doesTakeout').val(" + JSON.stringify(info.does_takeout) + ");" +
+				  		"$('#hasWifi').val(" + JSON.stringify(info.has_wifi) + ");" +
+				  		"$('#doesCatering').val(" + JSON.stringify(info.does_catering) + ");" +
+				  		"$('#parking').val(" + JSON.stringify(info.parking) + ");" +
+				  		"$('#hasWaiterService').val(" + JSON.stringify(info.has_waiter_service) + ");" +
+				  		"$('#restaurantCategory').val(" + JSON.stringify(info.restaurant_category) + ");" +
+				  		"$('#priceRange').val(" + JSON.stringify(info.price_range) + ");" +
 				  		"$('#doesDelivery').val(" + JSON.stringify(info.does_delivery) + ");"
 
 		chrome.tabs.query({url: HOSTNAME + "/leads/*/edit"}, function (tab){
