@@ -39,6 +39,22 @@ chrome.extension.onConnect.addListener(function(port) {
 				  			"$('#bio').val(" + JSON.stringify(info.bio) + ");" +
 				  			"$('#twitterHandle').val(" + JSON.stringify(info.twitter_handle) + ");" +
 								"$('#receiveOrderType').val(" + JSON.stringify(info.receive_int) + ");" +
+								"$('#testOrderNotes').val(" + JSON.stringify(info.test_order_notes) + ");" +
+								"$('#feedbackEmail').val(" + JSON.stringify(info.feedback_email) + ");" +
+								"$('#ownerNotes').val(" + JSON.stringify(info.owner_notes) + ");" +
+								"$('#motivationSigningUp').val(" + JSON.stringify(info.motivation_for_signing_up) + ");" +
+								"$('#storeFaxNumber').val(" + JSON.stringify(info.fax_number) + ");" +
+								"$('#depositTypeCheckBox').val(" + JSON.stringify(info.deposit_int) + ");" +
+								"$('#storeHoursText').val(" + JSON.stringify(info.mg_portal_hours) + ");" +
+								"$('#storePickupInstructions').val('Please go to the '+" + JSON.stringify(info.pickup_instructions) + "+' and ask for your OrderAhead order by name.');" +
+								"$('#storeDefaultPrepDuration').val(" + JSON.stringify(info.default_prep_time) + ");" +
+								"$('#storeBusyPrepDuration').val(" + JSON.stringify(info.busy_prep_time) + ");" +
+								"$('#storeOrderLimit').val(" + JSON.stringify(info.order_size_limit) + ");" +
+								"$('#webmasterName').val(" + JSON.stringify(info.webmaster_name) + ");" +
+								"$('#webmasterPhone').val(" + JSON.stringify(info.webmaster_phone) + ");" +
+								"$('#webmasterEmail').val(" + JSON.stringify(info.webmaster_email) + ");" +
+								"$('#onlineOrderingNotes').val(" + JSON.stringify(info.online_ordering_notes) + ");" +
+								"$('#menuComments').val(" + JSON.stringify(info.menu_notes) + ");" +
 				  			shared_code
 				  	});
 				})

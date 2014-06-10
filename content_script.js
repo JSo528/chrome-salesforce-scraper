@@ -1,5 +1,3 @@
-console.log("START HERE")
-
 owner_first_name = $('#00NE0000004xDKp_ileinner').text()
 owner_last_name = $('#00NE0000004xLb0_ileinner').text()
 store_name = $('#opp4_ileinner').text()
@@ -33,7 +31,7 @@ commission_percentage = $('#00NE0000004xLeE_ileinner').text()
 motivation_for_signing_up = $('#00NE0000004xLe4_ileinner').text()
 menu_notes = $('#00NE0000004xLg5_ileinner').text()
 online_ordering_notes = $('#00NE0000004xLg0_ileinner').text()
-order_size_limit = $('#00NE0000004xLfg_ileinner').text()
+order_size_limit = $('#00NE0000004xLfg_ileinner').text().match(/\d+/)
 busy_prep_time = $('#00NE0000004xLfb_ileinner').text()
 default_prep_time = $('#00NE0000004xLf7_ileinner').text()
 deposit_type = $('#00NE0000004xLeJ_ileinner').text()
@@ -49,6 +47,9 @@ merchant_bio = $('#00NE0000004xLdV_ileinner').text()
 twitter_handle = $('#00NE0000004xLdL_ileinner').text()
 facebook_url = $('#00NE0000004xLdG_ileinner').text()
 opportunity_id = document.location.href.split('/').pop()
+owner_notes = $('#00NE0000004xLdz_ileinner').text()
+fax_number = ""
+mg_portal_hours = $('#00NE0000004xLed_ileinner').text()
 
 if ($('#00NE0000004xLe9_ileinner').text() == "Monthly Fee") {
 	if (subscription_fee >= 400) {
@@ -65,7 +66,7 @@ if ($('#00NE0000004xLe9_ileinner').text() == "Monthly Fee") {
 switch (receive_orders_via) {
 	case "Fax":
 		receive_int = 0;
-		console.log('fax')
+		fax_number = $('#00NE0000004xLdk_ileinner').text()
 		break;
 	case "Ipad":
 		receive_int = 1;
@@ -78,6 +79,12 @@ switch (receive_orders_via) {
 	default:
 		receive_int = 0;
 		break;
+}
+
+if (deposit_type == "Check") {
+	deposit_int = 1
+} else {
+	deposit_int = 0
 }
 
 var leadInfo = {
@@ -124,7 +131,11 @@ var leadInfo = {
 	"twitter_handle": twitter_handle,
 	"facebook_url": facebook_url,
 	"opportunity_id": opportunity_id,
-	"plan" : plan
+	"plan" : plan,
+	"owner_notes": owner_notes,
+	"fax_number": fax_number,
+	"deposit_int": deposit_int,
+	"mg_portal_hours": mg_portal_hours
 }
 
 chrome.extension.connect().postMessage(leadInfo)
