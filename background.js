@@ -13,6 +13,7 @@ chrome.extension.onConnect.addListener(function(port) {
 				  		"$('#storeAddress').val(" + JSON.stringify(info.store_address) + ");" +
 				  		"$('#storeCity').val(" + JSON.stringify(info.store_city) + ");" +
 				  		"$('#storeState').val(" + JSON.stringify(info.store_state) + ");" +
+				  		"$('#storeZipCode').val(" + JSON.stringify(info.store_zip_code) + ");" +
 				  		"$('#merchantPhoneNumber').val(" + JSON.stringify(info.merchant_phone_number) + ");" +
 				  		"$('#salesforceLink').val(" + JSON.stringify(info.salesforce_link) + ");" +
 				  		"$('#numberOfYelpReviews').val(" + JSON.stringify(info.number_of_yelp_reviews) + ");" +

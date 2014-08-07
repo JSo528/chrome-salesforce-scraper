@@ -50,6 +50,7 @@ opportunity_id = document.location.href.split('/').pop()
 owner_notes = $('#00NE0000004xLdz_ileinner').text()
 fax_number = ""
 mg_portal_hours = $('#00NE0000004xLed_ileinner').text()
+store_zip_code = $('#00NE0000004xQxx_ileinner').text()
 
 if ($('#00NE0000004xLe9_ileinner').text() == "Monthly Fee") {
 	if (subscription_fee >= 400) {
@@ -135,7 +136,8 @@ var leadInfo = {
 	"owner_notes": owner_notes,
 	"fax_number": fax_number,
 	"deposit_int": deposit_int,
-	"mg_portal_hours": mg_portal_hours
+	"mg_portal_hours": mg_portal_hours,
+	"store_zip_code": store_zip_code
 }
 
 chrome.extension.connect().postMessage(leadInfo)
